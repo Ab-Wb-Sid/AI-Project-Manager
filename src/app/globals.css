@@ -1,0 +1,179 @@
+@import "tailwindcss";
+
+/*
+ * NovaWorks design tokens (Design.md §3).
+ * Serif = what was said (the transcript). Sans = what was decided (records).
+ */
+:root {
+  --paper: #f3f5f6;
+  --surface: #ffffff;
+  --ink: #17212b;
+  --slate: #5b6975;
+  --line: #d9dfe4;
+
+  --lagoon: #0e6b73;
+  --lagoon-dark: #0a545b;
+  --lagoon-tint: #e3f1f2;
+
+  --marigold: #d98e04;
+  --marigold-tint: #fcf3dc;
+
+  --brick: #b3261e;
+  --brick-tint: #fbe9e7;
+
+  --fern: #2e7d4f;
+
+  /* shadcn primitives read these; mapped onto the NovaWorks palette */
+  --background: var(--paper);
+  --foreground: var(--ink);
+  --card: var(--surface);
+  --card-foreground: var(--ink);
+  --popover: var(--surface);
+  --popover-foreground: var(--ink);
+  --primary: var(--lagoon);
+  --primary-foreground: #ffffff;
+  --secondary: var(--surface);
+  --secondary-foreground: var(--ink);
+  --muted: var(--paper);
+  --muted-foreground: var(--slate);
+  --accent: var(--lagoon-tint);
+  --accent-foreground: var(--ink);
+  --destructive: var(--brick);
+  --border: var(--line);
+  --input: var(--line);
+  --ring: var(--lagoon);
+  --radius: 8px;
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-slate: var(--slate);
+  --color-line: var(--line);
+  --color-lagoon: var(--lagoon);
+  --color-lagoon-dark: var(--lagoon-dark);
+  --color-lagoon-tint: var(--lagoon-tint);
+  --color-marigold: var(--marigold);
+  --color-marigold-tint: var(--marigold-tint);
+  --color-brick: var(--brick);
+  --color-brick-tint: var(--brick-tint);
+  --color-fern: var(--fern);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --font-sans: var(--font-schibsted), system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-serif: var(--font-newsreader), Georgia, "Times New Roman", serif;
+
+  /* Type scale (Design.md §3.2) */
+  --text-xs: 12px;
+  --text-xs--line-height: 16px;
+  --text-sm: 14px;
+  --text-sm--line-height: 20px;
+  --text-base: 16px;
+  --text-base--line-height: 24px;
+  --text-lg: 20px;
+  --text-lg--line-height: 28px;
+  --text-xl: 24px;
+  --text-xl--line-height: 32px;
+  --text-2xl: 32px;
+  --text-2xl--line-height: 40px;
+  --text-source: 17px;
+  --text-source--line-height: 28px;
+
+  --radius-card: 10px;
+  --radius-control: 8px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 10px;
+
+  --shadow-menu: 0 8px 24px rgba(23, 33, 43, 0.12);
+
+  --animate-indeterminate: indeterminate 1.4s ease-in-out infinite;
+  --animate-fade-once: fade-once 150ms ease-out both;
+  --animate-flash: flash 600ms ease-out;
+
+  @keyframes indeterminate {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(250%);
+    }
+  }
+  @keyframes fade-once {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  @keyframes flash {
+    0% {
+      background-color: var(--marigold-tint);
+    }
+    100% {
+      background-color: transparent;
+    }
+  }
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    background-color: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  *,
+  ::before,
+  ::after {
+    border-color: var(--line);
+  }
+  /* One focus treatment everywhere: 2px lagoon ring, 2px offset */
+  :focus-visible {
+    outline: 2px solid var(--lagoon);
+    outline-offset: 2px;
+  }
+  button:not(:disabled),
+  [role="button"]:not(:disabled),
+  [role="menuitem"] {
+    cursor: pointer;
+  }
+}
+
+@utility tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
